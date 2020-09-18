@@ -45,7 +45,13 @@ public class LoginController {
             }
         }
         else {
-           return "RegisterUser";
+            if(Username!="")
+            {
+                return "RegisterUser";
+            }
+            else
+            {return "RegisterFrombutton";}
+
         }
 
     }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>视频登入系统</title>
 </head>
-<body>
-<p style="text-align: center;font-size: xx-large;color: darkgreen"><b>研究院视频网站欢迎您!</b></p>
-<div style="width: 100%;height: 100%;text-align: center;margin-top: 60px">
+<body th:style="'background: url(' +'/img/image1.jpg'+ ');'">
+<p style="text-align: right;font-size: larger;color:darkmagenta"><b>研究院视频网站欢迎您!</b></p>
+<div style="width: 100%;height: 100%;text-align: center;margin-top: 150px">
     <form role="form" action="/loginIn" method="post">
         <div style="text-align: center">
             用户名：<label><input type="text" id="Username" name="Username" style="font-size: larger"> </label><br>
@@ -16,10 +17,7 @@
             <p></p>
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" id ="login" value="登录" style="font-size: larger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a href="RegisterFrombutton.html">
-                <button style="font-size: larger">注册</button>
-            </a>
-            <!--<input type="submit" id="register" value="注册" style="font-size: larger">-->
+            <input type="submit" id="register" value="注册" style="font-size: larger">
             <p style="color: red;text-align: center">密码错误，请重新输入！</p>
         </div>
     </form>
