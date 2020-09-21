@@ -19,10 +19,35 @@
             return  false;
         }
         else {
-          /*  document.getElementById("msg").innerHTML="注册成功！";*/
+
             document.getElementById("msg").style.visibility="hidden";
         }
     }
+</script >
+
+<script th:inline="javascript" >
+    function checkusername()
+    {
+        var inserinfoname='[[${session.ReUsername}]]';
+        console.log(inserinfoname);
+        if(inserinfoname==null || inserinfoname=="")
+        {
+           alert("用户名已存在，请重新输入！")
+
+            /*document.getElementById("meassage").innerHTML="用户名已存在，请重新输入！";
+            document.regfrom.ReUsername.focus();
+            document.getElementById("meassage").style.visibility="visible";*/
+            return  false;
+        }
+        else {
+            alert("用户可用！")
+
+            //document.getElementById("meassage").style.visibility="hidden";
+            return false;
+        }
+    }
+
+
 </script>
 <body th:style="'background: url(' +'/img/image1.jpg'+ ');'">
 <p style="text-align: right;font-size: larger;color:darkmagenta"><b>研究院视频网站欢迎您!</b></p>
@@ -30,8 +55,9 @@
 <div style="width: 100%;height: 100%;text-align: center;margin-top: 60px">
     <form role="form" action="/register" method="post" name="regfrom">
         <div style="text-align: center">
-            用 户 名&nbsp：<label><input type="text" id="ReUsername" name="ReUsername" style="font-size: larger" maxlength="12" onkeyup="value=value.replace(/[^bai\w]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\w]/g,''))" required> </label><br>
+            用 户 名&nbsp：<label><input type="text" id="ReUsername" name="ReUsername" onBlur="checkusername()" style="font-size: larger" maxlength="12" onkeyup="value=value.replace(/[^bai\w]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\w]/g,''))" required> </label><br>
             <p></p>
+            <div id="meassage" style="color: red"></div>
             设置密码：<label><input type="text" id ="ReUserpwd" name="ReUserpwd"  style="font-size: larger"  minlength="6" maxlength="6" required ></label><br>
             <p></p>
             确认密码：<label><input type="text" id ="ReconUserpwd" name="ReconUserpwd" onchange="checkpwds()" style="font-size: larger" minlength="6" maxlength="6" required></label><br>
