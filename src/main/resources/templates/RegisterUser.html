@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>注册页面</title>
+    <title>Register Page</title>
 </head>
 <script  type="text/javascript">
     function checkpwds()
@@ -13,7 +13,7 @@
       console.log(conpd);
         if(pd!=conpd)
         {
-            document.getElementById("msg").innerHTML="两次输入密码不一致，请重新输入";
+            document.getElementById("msg").innerHTML="The twice input password are not same! please reinput!";
             document.regfrom.ReconUserpwd.focus();
             document.getElementById("msg").style.visibility="visible";
             return  false;
@@ -24,8 +24,9 @@
         }
     }
 </script >
+<script type="text/javascript" src="/js/register.js"></script>
 
-<script th:inline="javascript" >
+<!--<script th:inline="javascript" >
     function checkusername()
     {
         var inserinfoname='[[${session.ReUsername}]]';
@@ -48,23 +49,24 @@
     }
 
 
-</script>
+</script>-->
 <body th:style="'background: url(' +'/img/image1.jpg'+ ');'">
-<p style="text-align: right;font-size: larger;color:darkmagenta"><b>研究院视频网站欢迎您!</b></p>
-<p style="color: red;text-align: center;">用户名不存在,请注册!</p>
+<p style="text-align: right;font-size: x-large;color:darkolivegreen"><b>Welcome to Our Website!</b></p>
+<p style="color: red;text-align: center;">The inputed username is not existed!Please register first!</p>
 <div style="width: 100%;height: 100%;text-align: center;margin-top: 60px">
-    <form role="form" action="/register" method="post" name="regfrom">
+    <form role="form" action="/RegisterUser" method="post" name="regfrom">
         <div style="text-align: center">
-            用 户 名&nbsp：<label><input type="text" id="ReUsername" name="ReUsername" onBlur="checkusername()" style="font-size: larger" maxlength="12" onkeyup="value=value.replace(/[^bai\w]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\w]/g,''))" required> </label><br>
-            <p></p>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp UserName ：<label><input type="text" id="ReUsername" name="ReUsername" onblur="CheckUserName()" style="font-size: larger" maxlength="12" onkeyup="value=value.replace(/[^bai\w]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\w]/g,''))" required> </label><br>
             <div id="meassage" style="color: red"></div>
-            设置密码：<label><input type="text" id ="ReUserpwd" name="ReUserpwd"  style="font-size: larger"  minlength="6" maxlength="6" required ></label><br>
             <p></p>
-            确认密码：<label><input type="text" id ="ReconUserpwd" name="ReconUserpwd" onchange="checkpwds()" style="font-size: larger" minlength="6" maxlength="6" required></label><br>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspPassword ：<label><input type="text" id ="ReUserpwd" name="ReUserpwd"  style="font-size: larger"  minlength="6" maxlength="6" required ></label><br>
+            <p></p>
+            ConfirmPassword ：<label><input type="text" id ="ReconUserpwd" name="ReconUserpwd" onchange="checkpwds()" style="font-size: larger" minlength="6" maxlength="6" required></label><br>
             <p></p>
             <p></p>
             <div id="msg" style="color: red"></div>
-            <input type="submit" id="register" value="立即注册" style="font-size: larger;color: darkgreen;background: chocolate" >
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="submit" id="register" value="Register" style="font-size: larger;color: darkgreen;background: chocolate" >
         </div>
     </form>
 </div>

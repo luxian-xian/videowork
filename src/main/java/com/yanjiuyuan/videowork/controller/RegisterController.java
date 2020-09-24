@@ -13,10 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,21 +26,22 @@ public class RegisterController {
 @Autowired
 JdbcTemplate jdbcTemplate;
     @GetMapping("/jdbc")
-    @ResponseBody
     @RequestMapping("/RegisterUser")
     public String show(){
         return "RegisterUser";
     }
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
-   public String userregister(HttpServletRequest request, HttpSession session)
-   {
-       String Username=request.getParameter("ReUsername");
-       System.out.println(Username);
-       String Userpwd=request.getParameter("ReUserpwd");
+        @RequestMapping(value = "/RegisterUser",method = RequestMethod.POST)
+   // @ResponseBody
+   public String RegisterUser(HttpServletRequest request,HttpServletResponse response )
+                throws ServletException, IOException{
+       String ReUsername=request.getParameter("ReUsername");
+       System.out.println("前台UI的值"+ReUsername);
+       String ReUserpwd=request.getParameter("ReUserpwd");
        String sql="select Username from videousers where Username=?";
        String userresult=null;
+       boolean flag=true;
        try{
-           userresult=jdbcTemplate.queryForObject(sql, java.lang.String.class,Username);
+           userresult=jdbcTemplate.queryForObject(sql, java.lang.String.class,ReUsername);
        }catch (EmptyResultDataAccessException e)
        {
            userresult=null;
@@ -51,19 +49,25 @@ JdbcTemplate jdbcTemplate;
 
        if(userresult ==null || userresult=="")
        {
-           session.setAttribute("ReUsername",Username);
-           insernameservice.Insertuser(Username,Userpwd);
-           return "loginRegister";
 
+          response.getWriter().println("<!--usernotexist-->");//不存在用户名
+           if(ReUserpwd!=null ) {
+               insernameservice.Insertuser(ReUsername, ReUserpwd);
+           }
+           return "loginRegister";
        }
        else
        {
-           /*session.setAttribute("ReUsername","");
-           String  va1= (String) session.getAttribute("ReUsername");*/
+           //session.setAttribute("ReUsername","");
+         //  String  va1= (String) session.getAttribute("ReUsername");
+           response.getWriter().println("<!--userexist-->");//存在该用户
 
           return "RegisterUser";
        }
+
    }
+
+
 
     /*public boolean checkname(String Username)
     {
@@ -81,3 +85,4 @@ JdbcTemplate jdbcTemplate;
         return flag;
     }*/
 }
+
