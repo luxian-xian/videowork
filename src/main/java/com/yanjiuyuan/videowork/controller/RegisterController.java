@@ -35,7 +35,6 @@ JdbcTemplate jdbcTemplate;
    public String RegisterUser(HttpServletRequest request,HttpServletResponse response )
                 throws ServletException, IOException{
        String ReUsername=request.getParameter("ReUsername");
-       System.out.println("前台UI的值"+ReUsername);
        String ReUserpwd=request.getParameter("ReUserpwd");
        String sql="select Username from videousers where Username=?";
        String userresult=null;

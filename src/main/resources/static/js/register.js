@@ -48,7 +48,7 @@ function CheckUserName(){
                 console.log(request.readyState);
                 let data=request.responseText;//获取CheckUserNameServlet中response中存储的值
                 console.log(data);
-                console.log(data.indexOf("1"));
+
 
 
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Pwd Relogin</title>
+</head>
+<body th:style="'background: url(' +'/img/image1.jpg'+ ');'">
+<p style="text-align:right;font-size:x-large;color: darkolivegreen"><b>Welcome to Our Website!</b></p>
+<div style="width: 100%;height: 100%;text-align: center;margin-top: 150px">
+    <p style="text-align: center;font-size: larger;color: black">The password has modified!Please login again!</p>
+    <form role="form" action="/loginIn" method="post">
+        <div style="text-align: center">
+            UserName : &nbsp<label><input type="text" id="Username" name="Username" style="font-size: larger"> </label><br>
+            <p></p>
+            Password &nbsp:&nbsp&nbsp<label><input type="password" id ="Userpwd" name="Userpwd" style="font-size: larger"></label><br>
+            <p></p>
+            <p></p>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="submit" id ="login" value="SignIn" style="font-size: larger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            &nbsp&nbsp&nbsp&nbsp&nbsp
+            <input type="submit" id="register" value="Register" style="font-size: larger">
+        </div>
+    </form>
+</div>
+</body>
+</html>
