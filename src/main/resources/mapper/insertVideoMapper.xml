@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yanjiuyuan.videowork.dao.insertVideoMapper">
+    <select id="insertVideoInfo" parameterType="com.yanjiuyuan.videowork.entity.VideoBean" resultType="com.yanjiuyuan.videowork.entity.VideoBean">
+        INSERT INTO videoinfos(videoname,video_description,uploadname,uploadtime, img_path,video_path) VALUES( #{videoname},#{video_description},#{uploadname},#{uploadtime},#{img_path},#{video_path});
+    </select>
+
+
+</mapper>

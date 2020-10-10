@@ -7,10 +7,12 @@
 <body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
 <div style="color: chocolate;font-size: larger;display: inline-block" >
     <label th:text="${session.Username}+'欢迎您！'"></label>
-    <a href="Changepwd" th:style="'background: url(' +'/img/image2.jpg'+ ');'">
+    <a href="Changepwd" >
     <button type="submit" style="color: darkgreen;background: chocolate"  >修改密码</button></a>
-<button style="color: darkgreen;background: chocolate"> 注销</button>
+  <!--  <a href="login">-->
+<a class="button" style="color: darkgreen;background: chocolate;font-size: medium" th:href="@{/user/logout}"> 注销</a><!--</a>-->
 </div>
+<!--<div id="msg" style="text-align: center;color: black;font-size: larger"></div>-->
 <div style="margin-top: 30px"></div>
 <div style="display:inline-block" >
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -18,6 +20,9 @@
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" maxlength="255" ></label>
    <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="Search" name="Search" value="搜索">
+    <a href="Uploadvideo">
+    <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="upload" name="upload" value="上传视频">
+    </a>
 </div>
 <label><input type="text"  id="usedname" name="usedname" th:value="${session.Username}" style="visibility: hidden"></label>
 <script type="text/javascript">
@@ -25,5 +30,47 @@
     console.log(middlename);
     localStorage.changename=middlename;
 </script>
+<label><input type="text"  id="uploadstatus" name="uploadstatus" th:value="${session.uploadstatus}" style="visibility: hidden"></label>
+<script type="text/javascript">
+    var uloadobject=document.getElementById("uploadstatus")
+    if (uloadobject!=null) {
+        var uploadvalue = document.getElementById("uploadstatus").value;
+        console.log(uploadvalue);
+        if (uploadvalue == 1) {
+            alert("文件上传失败！");
+
+        }
+        if (uploadvalue == 2) {
+           /* document.getElementById("msg").innerHTML = "文件上传成功！";
+            document.getElementById("msg").style.visibility = "visible";*/
+            alert("文件上传成功！");
+        }
+    }
+</script>
+<!--<script th:inline="javascript">
+    var uloadobject=document.getElementById("uploadstatus")
+    if(uloadobject!=null) {
+        var uploadstatus='[[${session.uploadstatus}]]';
+        console.log(uploadstatus);
+        document.getElementById("uploadstatus").value=uploadstatus;
+        var uploadvaule= document.getElementById("uploadstatus").value;
+        console.log(uploadvaule);
+        var com1='"1"';
+        console.log(com1);
+        var com2='"2"';
+        console.log(com2);
+        if (uploadvaule == com1) {
+            alert("文件上传失败！");
+            document.getElementById("uploadstatus").value="";
+        }
+        if (uploadstatus == com2) {
+            alert("文件上传成功！");
+            document.getElementById("uploadstatus").value="";
+        }
+    }
+</script>-->
+<div>
+
+</div>
 </body>
 </html>

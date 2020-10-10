@@ -2,9 +2,22 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>管理员界面</title>
+    <title>AdminPage</title>
 </head>
-<body>
-<h1 th:text="${session.Username}+'欢迎您！'"></h1>
+<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
+<div style="color: chocolate;font-size: larger;display: inline-block" >
+    <label th:text="${session.Username}+'欢迎您！'"></label>
+    <a href="login">
+        <button style="color: darkgreen;background: chocolate"> 注销</button></a>
+</div>
+<div style="margin-top: 30px"></div>
+<div style="display:inline-block" >
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" maxlength="255" ></label>
+    <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="Search" name="Search" value="搜索">
+</div>
+
 </body>
 </html>

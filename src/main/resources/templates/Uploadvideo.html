@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Page</title>
+</head>
+
+<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
+<div style="width: 100%;height: 100%;text-align: center;margin-top: 60px">
+    <form role="form" action="/Uploadvideo" method="post" name="uploadVideo"enctype="multipart/form-data">
+        <div style="text-align: center">
+            视频名称 ：<label><input type="text" id="videoName" name="videoName"   style="font-size: larger"> </label><br>
+            <p></p>
+            视频描述 ：<label><input type="text_area" id ="videodesc" name="videodesc" style="font-size: larger"  maxlength="200"></label><br>
+            <p></p>
+            上传用户 ：<label><input type="text" id="uploadName" name="uploadName"  readonly="readonly" style="font-size: larger;background: darkgray" > </label><br>
+            <p></p>
+            <script type="text/javascript">
+                var nameed=localStorage.changename
+                console.log(nameed);
+                document.getElementById("uploadName").value=nameed;
+            </script>
+            上传时间 ：<label><input type="date" id ="uploadTime" name="uploadTime"   style="font-size: larger;background: darkgray;width: 240px"  readonly="readonly" ></label><br>
+            <p></p>
+            <script type="text/javascript">
+                    var now=new Date();
+                    var year=now.getFullYear();
+                    var month=now.getMonth()+1;
+                    var day=now.getDate();
+                    var clock=year+"-";
+                    if(month<10)
+                    {
+                        month="0"+month;
+                    }
+                    clock=clock+month+"-";
+                    if(day<10)
+                    {
+                        day="0"+day;
+                    }
+                    clock=clock+day;
+                    document.getElementById("uploadTime").value=clock;
+                    console.log(clock);
+            </script>
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+            图片路径 ：<label><input type="file" accept="image/*" id="imgfile" name="imgfile"  style="font-size: larger"   required ></label><br>
+            <p></p>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                视频路径 ：<label><input  type="file" accept="video/*" id ="file" name="file"  style="font-size: larger"  required></label><br>
+                <!--<input style="color: darkgreen;background: chocolate" type="button" id="browsers" name="browsers" value="浏览...">-->
+            <p></p>
+            <input type="submit" id="upload" value="上传" style="font-size: larger;color: darkgreen;background: chocolate" >
+        </div>
+    </form>
+</div>
+</body>
+</html>
