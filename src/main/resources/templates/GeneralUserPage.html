@@ -18,7 +18,7 @@
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" maxlength="255" ></label>
+    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" maxlength="255" required></label>
    <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="Search" name="Search" value="搜索">
     <a href="Uploadvideo">
     <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="upload" name="upload" value="上传视频">
@@ -69,8 +69,17 @@
         }
     }
 </script>-->
+<div style="margin-top: 70px"></div>
 <div>
-
+    <table style="margin:0 auto">
+        <tr>
+        <td>
+            <a href="http://localhost:8080/UploadFiles/videos/1602920828169.mp4">
+          <img th:src="@{'../UploadFiles/images/1602920828169.JPG'}" width="600" height="400" style="border-style: solid">
+            </a>
+        </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

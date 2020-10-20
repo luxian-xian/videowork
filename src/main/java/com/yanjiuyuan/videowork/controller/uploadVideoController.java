@@ -56,7 +56,9 @@ public class uploadVideoController {
         String videoNewFileName=time+videosuffixname; //文件新名称
         //存放路径
         String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\videos"+File.separator+videoNewFileName;
+       // String destivideopath= "D:\\uploadresources"+File.separator+videoNewFileName;
         System.out.println(destivideopath);
+        String destivideosavedbpath="UploadFiles\\videos"+File.separator+videoNewFileName;
 
         String imgfileName=imgfile.getOriginalFilename();
         String imgsuffixname=imgfileName.substring(imgfileName.lastIndexOf("."));
@@ -64,6 +66,8 @@ public class uploadVideoController {
         System.out.println(imgsuffixname);
         String imgNewFileName=time+imgsuffixname;//文件新名称
         String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\images"+File.separator+imgNewFileName;
+       // String destiimgpath="D:\\uploadresources"+File.separator+imgNewFileName;
+        String destiimgsavedbpath="UploadFiles\\images"+File.separator+imgNewFileName;
         File newvideofile=new File(destivideopath);
         File newimgfile=new File(destiimgpath);
         if(!newvideofile.getParentFile().exists())
@@ -78,7 +82,7 @@ public class uploadVideoController {
         try {
             file.transferTo(newvideofile);
             imgfile.transferTo(newimgfile);
-            insertvideoservice.insertVideoinfos(videoname,video_description,uploadname,uploadtime,destiimgpath,destivideopath);
+            insertvideoservice.insertVideoinfos(videoname,video_description,uploadname,uploadtime,destiimgsavedbpath,destivideosavedbpath);
             session.setAttribute("uploadstatus","2");
         }catch (FileNotFoundException e)
         {
@@ -95,6 +99,6 @@ public class uploadVideoController {
         }
 
 
-        return "GeneralUserPage";
+        return "redirect:GeneralUserPage";
     }
 }

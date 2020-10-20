@@ -21,7 +21,7 @@ public class LoginController {
         public String show(){
         return "login";
     }
-    @RequestMapping(value="/loginIn",method = RequestMethod.POST)
+    @RequestMapping(value="/login",method = RequestMethod.POST)
     public String userlogin(HttpServletRequest request, HttpSession session)
     {
         String Username=request.getParameter("Username");
@@ -37,7 +37,7 @@ public class LoginController {
             }
             if (userbean !=null && !"Admin".equals(Username))
             {
-                return "GeneralUserPage";
+                return "redirect:GeneralUserPage";
             }
             else
             {
