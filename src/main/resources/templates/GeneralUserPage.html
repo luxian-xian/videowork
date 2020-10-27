@@ -70,12 +70,14 @@
     }
 </script>-->
 <div style="margin-top: 70px"></div>
+<div style="text-align: center">
 <span id="showpic" style="font-size: larger;text-align: center">图片加载中。。。。</span>
+</div>
 <div id="dispic">
     <table id="tab" style="margin:0 auto">
         <tr>
         <td>
-            <a id ="videopath1" >
+            <a id ="videopath1" target="_blank">
               <!--  <div id="imgpath">
                  &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                 </div>-->
@@ -83,7 +85,7 @@
             </a>
         </td>
             <td>
-                <a id ="videopath2" >
+                <a id ="videopath2" target="_blank">
                     <!--  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                       </div>-->
@@ -91,7 +93,7 @@
                 </a>
             </td>
             <td>
-                <a id ="videopath3" >
+                <a id ="videopath3" target="_blank">
                     <!--  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                       </div>-->
@@ -101,7 +103,7 @@
         </tr>
         <tr>
             <td>
-                <a id ="videopath4" >
+                <a id ="videopath4" target="_blank">
                     <!--  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                       </div>-->
@@ -109,15 +111,15 @@
                 </a>
             </td>
             <td>
-                <a id ="videopath5" >
+                <a id ="videopath5" target="_blank">
                     <!--  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                       </div>-->
-                    <img id="textimg5" width="400" height="300" style="border-style: solid">
+                    <img id="textimg5" width="400" height="300" >
                 </a>
             </td>
             <td>
-                <a id ="videopath6" >
+                <a id ="videopath6" target="_blank">
                     <!--  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                       </div>-->
@@ -230,6 +232,7 @@ $(document).ready(function getpathlist(){
             complete: function (){
                 $("#showpic").hide();
                 $("#dispic").show();
+                $("#uploadstatus").attr('value',"7");
             },
             error: function (xhr, textStatus, errorThrown){
                 alert("ajax连接异常：");
