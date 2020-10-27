@@ -10,7 +10,7 @@ public class GetPathServiceimpl implements GetPathService{
     @Autowired
     private GetPathMapper getpathmapper;
     @Override
-    public List<Map<String,String>>getpathservice()
+    public List<String>getpathservice()
     {
         return getpathmapper.getpath();
 

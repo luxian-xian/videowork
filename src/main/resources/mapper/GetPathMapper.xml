@@ -5,8 +5,10 @@
         <result property="key" column="img_path" javaType="java.lang.String" jdbcType="VARCHAR"/>
         <result property="value" column="video_path" javaType="java.lang.String" jdbcType="VARCHAR"/>
     </resultMap>-->
-    <select id="getpath" resultType="java.util.Map">
-        SELECT img_path,video_path FROM videoinfos
+    <select id="getpath" resultType="String">
+        SELECT img_path FROM videoinfos
+        UNION
+        SELECT video_path FROM videoinfos;
     </select>
 
 </mapper>

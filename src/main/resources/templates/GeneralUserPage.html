@@ -70,16 +70,186 @@
     }
 </script>-->
 <div style="margin-top: 70px"></div>
-<div>
-    <table style="margin:0 auto">
+<span id="showpic" style="font-size: larger;text-align: center">图片加载中。。。。</span>
+<div id="dispic">
+    <table id="tab" style="margin:0 auto">
         <tr>
         <td>
-            <a href="http://localhost:8080/UploadFiles/videos/1602920828169.mp4">
-          <img th:src="@{'../UploadFiles/images/1602920828169.JPG'}" width="600" height="400" style="border-style: solid">
+            <a id ="videopath1" >
+              <!--  <div id="imgpath">
+                 &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                </div>-->
+            <img id="textimg1" width="400" height="300" >
             </a>
         </td>
+            <td>
+                <a id ="videopath2" >
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg2" width="400" height="300">
+                </a>
+            </td>
+            <td>
+                <a id ="videopath3" >
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg3" width="400" height="300" >
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a id ="videopath4" >
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg4" width="400" height="300">
+                </a>
+            </td>
+            <td>
+                <a id ="videopath5" >
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg5" width="400" height="300" style="border-style: solid">
+                </a>
+            </td>
+            <td>
+                <a id ="videopath6" >
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg6" width="400" height="300" >
+                </a>
+            </td>
         </tr>
     </table>
 </div>
+
+<script type="text/javascript"  th:src="@{'../js/jquery-3.3.1.min.js'}"></script>
+<script type="text/javascript">
+ /*   function sleep(delay)
+    {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }*/
+$(document).ready(function getpathlist(){
+        $.ajax({
+            url: "http://localhost:8080/picPath",
+            type: "get",
+            dataType: "json",
+            async: true,
+            beforeSend:function ()
+            {  $("#showpic").show();
+                $("#dispic").hide();
+                },
+            success: function (data)
+            {
+                var str="";
+                console.log(data);
+               var datalength=data.length;
+               var midlegth=datalength/2;
+               console.log(datalength);
+                console.log(midlegth);
+                if(midlegth<7 ){
+                    for (var i = 0; i < midlegth; i++) {
+                        var a = data[i];
+                        console.log(i);
+                        var j = i + midlegth;
+                        var h=i+1;
+                        var b=data[j]
+                        console.log(a);
+                        console.log(b);
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#textimg"+h).attr('src',c);
+                        $("#videopath"+h).attr('href',videolink);
+                    }
+
+
+                }
+                else{
+                    var h=1;
+                    for(i=midlegth-1;i>midlegth-7;i--)
+                    {
+                        var a = data[i];
+                        console.log(i);
+                        var j = i + midlegth;
+                        var b=data[j];
+                        console.log(a);
+                        console.log(b);
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#textimg"+h).attr('src',c);
+                        $("#videopath"+h).attr('href',videolink);
+                        h=h+1;
+                        console.log(h);
+
+                    }
+                }
+                  /* for (var i = 0; i < midlegth; i++) {
+                       var a = data[i];
+                       var j=i+midlegth;
+                       var b=data[j]
+                       console.log(a);
+                       console.log(b);
+                       var result = a.replace(/\\/g, "/");
+                       var videoresult = b.replace(/\\/g, "/");
+                       console.log(result);
+
+                      //  str="<tr><td>"+data[i]+"</td>></tr>";
+                          $("#tab").append(str);
+                       // str="<img "+"th:src=\"@{'../"+result+"'}\""+" "+"width=\"600\" height=\"400\" style=\"border-style: solid\">";
+                      // str = "<img " + "src=\"../" + result + "\"" + " " + "width=\"600\" height=\"400\" style=\"border-style: solid\">";
+                           str = "<a href=\""+"http://localhost:8080/"+videoresult+"\"></br>"+"<img " + "src=\"../" + result + "\"" + " " + "width=\"600\" height=\"400\" style=\"border-style: solid\">"+"</a>";
+                           console.log(str);
+                       $("#imgpath").append(str);
+                     /!*  var c="../" + result;
+                       console.log(c);
+                       var videolink="http://localhost:8080/"+videoresult;
+                     //  $("#textimg").src="\"../" + result + "\"";
+                       $("#textimg").attr('src',c);
+                       $("#videopath").attr('href',videolink);*!/
+
+
+                   }*/
+
+
+
+            },
+            complete: function (){
+                $("#showpic").hide();
+                $("#dispic").show();
+            },
+            error: function (xhr, textStatus, errorThrown){
+                alert("ajax连接异常：");
+             /*   alert("状态码："+xhr.status);
+                alert("状态:"+xhr.readyState);*/
+                alert("错误信息:"+xhr.statusText );
+             /*   alert("返回响应信息："+xhr.responseText );
+                alert("请求状态："+textStatus);
+                alert(errorThrown);*/
+
+            }
+
+            }
+        );
+
+    });
+
+
+</script>
+
+
 </body>
 </html>

@@ -53,6 +53,10 @@ public class uploadVideoController {
         String videosuffixname=videofileName.substring(videofileName.lastIndexOf("."));
         System.out.println(videofileName);
         System.out.println(videosuffixname);
+        if(videosuffixname!=".mp4" ||videosuffixname!=".MP4" )
+        {
+            videosuffixname=".mp4";
+        }
         String videoNewFileName=time+videosuffixname; //文件新名称
         //存放路径
         String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\videos"+File.separator+videoNewFileName;

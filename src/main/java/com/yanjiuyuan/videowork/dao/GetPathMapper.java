@@ -7,5 +7,7 @@ import java.util.Map;
 @Repository
 @Component
 public interface GetPathMapper {
-    List<Map<String,String>> getpath();
+   // List<Map<String,String>> getpath();
+   List<String> getpath();
+
 }
