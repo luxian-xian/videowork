@@ -5,5 +5,5 @@ import java.util.List;
 @Repository
 @Component
 public interface searchResultMapper {
-    List<String> getsearchlist();
+    List<String> getsearchlist(String Searchname);
 }

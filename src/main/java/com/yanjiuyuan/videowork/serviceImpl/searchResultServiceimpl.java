@@ -9,9 +9,9 @@ public class searchResultServiceimpl implements searchResultService {
     @Autowired
     private searchResultMapper searchresultmapper;
     @Override
-    public List<String>getsearchresultservice()
+    public List<String>getsearchresultservice( String videoname)
     {
-        return searchresultmapper.getsearchlist();
+        return searchresultmapper.getsearchlist( videoname);
 
     }
 }

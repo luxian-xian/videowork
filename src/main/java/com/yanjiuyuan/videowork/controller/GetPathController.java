@@ -38,14 +38,14 @@ public class GetPathController {
             System.out.println(map.get("img_path"));
             System.out.println(map.get("video_path"));
         }*/
-        for (int i = 0; i < pathList.size(); i++) {
+        /*for (int i = 0; i < pathList.size(); i++) {
             System.out.println(pathList.get(i));
 
-        }
+        }*/
        /* try
-        {*/ System.out.println("xian11");
+        {*/// System.out.println("xian11");
             JSONArray data=JSONArray.fromObject(pathList);
-            System.out.println(data);
+            //System.out.println(data);
             return data;
 
        /* }catch (Exception e){

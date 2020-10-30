@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Search Result List</title>
 </head>
-<body>
+<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
 
+<label><input type="text" id="Searchname" name="Searchname" style="visibility: hidden"  > </label><br>
+<script type="text/javascript">
+    if (window.opener && !window.opener.closed) {
+        var videonamed = window.opener.document.getElementById("SearchVideo").value;
+        console.log("xian1++" + videonamed);
+        document.getElementById("Searchname").value = videonamed;
+    }
+    var test=document.getElementById("Searchname").value;
+    console.log("xiantest"+test);
+</script>
+<div>
+    <p id ="result" style="font-size: large;color: darkmagenta">视频搜索结果：</p>
+</div>
+<div style="text-align: center">
+    <span id="showvideo" style="font-size: larger;text-align: center">视频搜索中。。。。</span>
+</div>
+<div>
+    <table id="tab" style="margin-right: 20px">
+
+    </table>
+
+</div>
+<script type="text/javascript"  th:src="@{'../js/jquery-3.3.1.min.js'}"></script>
+<script type="text/javascript">
+    var videoname= document.getElementById("Searchname").value;
+    console.log("shipin："+videoname);
+    $(document).ready(function getsearchlist(){
+        $.ajax({
+            url: "http://localhost:8080/data",
+            type: "get",
+            dataType: "json",
+            data: {'Searchname':videoname},
+            async: true,
+            beforeSend:function ()
+            {  $("#showvideo").show();
+                $("#tab").hide();
+                $("#result").hide();
+            },
+            success: function (data)
+            {
+                var datalength=data.length;
+                console.log("test++"+datalength);
+                var midlegth=datalength/3;
+                if(datalength==0)
+                {
+                    alert("未搜索到匹配结果！");
+                    window.close();
+                }
+                else
+                {
+                    for (var i = 0; i < midlegth; i++){
+                        var a = data[i];
+                        console.log(a);
+                        var j=i+midlegth;
+                        var b=data[j];
+                        console.log(b);
+                        var k=j+midlegth;
+                        var c=data[k];
+                        console.log(c);
+                        var imgresult= a.replace(/\\/g, "/");
+                        var videoresult= b.replace(/\\/g, "/");
+                        var nameresult= c.replace(/\\/g, "/");
+                        str = "<a href=\""+"http://localhost:8080/"+videoresult+"\"><br>"+"<img " + "src=\"../" + imgresult + "\"" + " " + "width=\"300\" height=\"150\" >"+"</br>"+"<label>"+nameresult+"</label><br></a>";
+                        console.log(str);
+                        $("#tab").append(str);
+                    }
+
+                }
+
+            },
+            complete: function (){
+                $("#showvideo").hide();
+                $("#tab").show();
+                $("#result").show();
+            },
+            error: function (xhr, textStatus, errorThrown){
+                alert("ajax连接异常：");
+                /*   alert("状态码："+xhr.status);
+                   alert("状态:"+xhr.readyState);*/
+                alert("错误信息:"+xhr.statusText );
+                /*   alert("返回响应信息："+xhr.responseText );
+                   alert("请求状态："+textStatus);
+                   alert(errorThrown);*/
+
+            }
+
+            }
+
+        );
+
+    });
+</script>
 </body>
 </html>
