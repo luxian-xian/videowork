@@ -33,7 +33,7 @@ public class LoginController {
         {
             if(userbean !=null && "Admin".equals(Username))
             {
-                return "AdminPage" ;
+                return "redirect:AdminPage" ;
             }
             if (userbean !=null && !"Admin".equals(Username))
             {

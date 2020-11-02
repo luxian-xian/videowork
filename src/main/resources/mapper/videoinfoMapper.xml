@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yanjiuyuan.videowork.dao.videoinfoMapper">
+    <select id="getvideinfo"  resultType="com.yanjiuyuan.videowork.entity.VideoBean">
+       /* SELECT id,videoname,video_description,uploadname,uploadtime  FROM videoinfos;*/
+        SELECT *  FROM videoinfos;
+    </select>
+
+
+</mapper>

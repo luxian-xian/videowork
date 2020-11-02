@@ -104,8 +104,13 @@ public class uploadVideoController {
             session.setAttribute("uploadstatus","1");
             return "上传失败，"+e.getMessage();
         }
-
-
-        return "redirect:GeneralUserPage";
+   String  user= (String) session.getAttribute("Username");
+        if( user !=null && "Admin".equals(user))
+        {
+            return "redirect:AdminPage";
+        }
+  else {
+            return "redirect:GeneralUserPage";
+        }
     }
 }

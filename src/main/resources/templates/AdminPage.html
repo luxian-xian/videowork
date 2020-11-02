@@ -2,22 +2,156 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>AdminPage</title>
+    <title>Admin Page</title>
 </head>
 <body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
 <div style="color: chocolate;font-size: larger;display: inline-block" >
     <label th:text="${session.Username}+'欢迎您！'"></label>
-    <a href="login">
-        <button style="color: darkgreen;background: chocolate"> 注销</button></a>
+    <a class="button" style="color: darkgreen;background: chocolate;font-size: medium" th:href="@{/user/logout}"> 注销</a>
 </div>
-<div style="margin-top: 30px"></div>
+<div style="margin-top: 30px" ></div>
 <div style="display:inline-block" >
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" maxlength="255" ></label>
-    <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="Search" name="Search" value="搜索">
+
+    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo"  maxlength="255" required></label>
+    <!-- <a href="SearchVideo">-->
+    <input style="font-size:large;color: darkgreen;background: chocolate;height: 40px"  type="button" id="Search" name="Search" value="搜索" onclick="checksearchtext()">
+    <!--</a>-->
+    <script type="text/javascript">
+        function  checksearchtext(){
+            var videoname=document.getElementById("SearchVideo").value;
+            console.log(videoname);
+            if(videoname =="")
+            {
+                alert("搜索框内容不能为空！")
+                document.getElementById("SearchVideo").focus();
+            }
+            else
+            { /*window.location.href="SearchVideo"*/
+                window.open("SearchVideo");
+            }
+        }
+    </script>
+
+    <a href="Uploadvideo">
+        <input style="font-size: large;color: darkgreen;background: chocolate;height: 40px" type="button" id="upload" name="upload" value="上传视频">
+    </a>
 </div>
+<!--</form>-->
+<label><input type="text"  id="usedname" name="usedname" th:value="${session.Username}" style="visibility: hidden"></label>
+<script type="text/javascript">
+    var middlename=document.getElementById("usedname").value;
+    console.log(middlename);
+    localStorage.changename=middlename;
+</script>
+<label><input type="text"  id="uploadstatus" name="uploadstatus" th:value="${session.uploadstatus}" style="visibility: hidden"></label>
+<script type="text/javascript">
+    var uloadobject=document.getElementById("uploadstatus")
+    if (uloadobject!=null) {
+        var uploadvalue = document.getElementById("uploadstatus").value;
+        console.log(uploadvalue);
+        if (uploadvalue == 1) {
+            alert("文件上传失败！");
+
+        }
+        if (uploadvalue == 2) {
+            /* document.getElementById("msg").innerHTML = "文件上传成功！";
+             document.getElementById("msg").style.visibility = "visible";*/
+            alert("文件上传成功！");
+        }
+    }
+</script>
+<div>
+    <div style="text-align: center">
+        <span id="showvideolist" style="font-size: larger;text-align: center">视频信息加载中。。。。</span>
+    </div>
+    <div style="margin-top: 70px" ></div>
+    <table id="videolist" align="center" border="1px" cellpadding="1" width="700">
+        <thead id="videohead" width="700">
+        <tr>
+            <th>视频号</th>
+            <th>视频名称</th>
+            <th>视频描述</th>
+            <th>上传用户</th>
+            <th>上传时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="videoinfo" align="center">
+
+        </tbody>
+
+    </table>
+</div>
+
+
+<script type="text/javascript"  th:src="@{'../js/jquery-3.3.1.min.js'}"></script>
+<script type="text/javascript">
+    $(document).ready(function getpathlist(){
+        $.ajax({
+                url: "http://localhost:8080/videolist",
+                type: "get",
+                dataType: "json",
+                async: true,
+                beforeSend:function ()
+                {  $("#showvideolist").show();
+                    $("#videolist").hide();
+                    $("#videohead").hide();
+                },
+                success: function (data)
+                {
+                    var datalength=data.length;
+                    console.log("test++"+datalength);
+                    var str="";
+                    for (var i = 0; i < datalength; i++)
+                    {
+                        var a=data[i].video_path;
+                        console.log(a);
+                        var mydate=data[i].uploadtime;
+                        if(mydate!=null ||mydate !="")
+                        {
+                          var  correctdate= new Date(parseInt(mydate.time));
+                            correctdate=correctdate.toLocaleDateString();
+                        }
+                        console.log(mydate);
+                        console.log(correctdate);
+                        var videoresult= a.replace(/\\/g, "/");
+                        str1="<tr><td>"+data[i].id+"</td><td>"+data[i].videoname+"</td><td>"+data[i].video_description+"</td><td>"+data[i].uploadname+"</td><td>"+correctdate+"</td>";
+                        str2="<td><a href=\""+"http://localhost:8080/"+videoresult+"\" target='_blank'>"+"<button>查看</button>"+"</a><button>修改</button><button>删除</button>"+"</td></tr>";
+                        str=str1+str2;
+                        console.log(str);
+                        $("#videoinfo").append(str);
+
+                    }
+
+                },
+                complete: function (){
+                    $("#showvideolist").hide();
+                    $("#videolist").show();
+                    $("#videohead").show();
+
+                },
+                error: function (xhr, textStatus, errorThrown){
+                    alert("ajax连接异常：");
+                    /*   alert("状态码："+xhr.status);
+                       alert("状态:"+xhr.readyState);*/
+                    alert("错误信息:"+xhr.statusText );
+                    /*   alert("返回响应信息："+xhr.responseText );
+                       alert("请求状态："+textStatus);
+                       alert(errorThrown);*/
+
+                }
+
+            }
+        );
+
+    });
+</script>
+
+
+
 
 </body>
 </html>
