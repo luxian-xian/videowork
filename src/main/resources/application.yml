@@ -12,9 +12,11 @@ spring:
       max-request-size: 200MB
   thymeleaf:
     cache: false
+
 mybatis:
       mapper-locations: classpath:mapper/*.xml
       type-aliases-package: com.yanjiuyuan.videowork.entity
+
 
 
 

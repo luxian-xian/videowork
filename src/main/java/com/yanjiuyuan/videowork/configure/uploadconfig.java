@@ -11,7 +11,10 @@ public class uploadconfig implements WebMvcConfigurer {
      // String path="D:\\videowork\\src\\main\\resources\\static\\UploadFiles";
         //       /images/**是对应resource下工程目录
 
-        registry.addResourceHandler("/upload/**").addResourceLocations("file:D:/videowork/src/main/resources/static/upload/");
+       // registry.addResourceHandler("/upload/**").addResourceLocations("file:D:/videowork/src/main/resources/static/upload/");
+        registry.addResourceHandler("/upload/**").addResourceLocations("file:E:/videowork_extension/src/main/resources/static/upload/");
+      //  registry.addResourceHandler("/upload/**").addResourceLocations("file:/usr/ideaProject/file:/usr/ideaProject/src/main/resources/static/upload/");
+
 
     }
 }

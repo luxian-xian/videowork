@@ -2,6 +2,7 @@ package com.yanjiuyuan.videowork.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.yanjiuyuan.videowork.entity.VideoBean;
@@ -31,7 +32,7 @@ public class uploadVideoController {
     @RequestMapping(value = "/Uploadvideo",method = RequestMethod.POST)
    // @ResponseBody
     public String videoUpload(@RequestParam(value = "file")MultipartFile file, @RequestParam(value = "imgfile")MultipartFile imgfile, HttpServletRequest request, HttpSession session)
-            throws ParseException {
+            throws ParseException, FileNotFoundException {
         String videoname=request.getParameter("videoName");
         String video_description=request.getParameter("videodesc");
         String uploadname=request.getParameter("uploadName");
@@ -61,8 +62,15 @@ public class uploadVideoController {
         //存放路径
       //  String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\videos"+File.separator+videoNewFileName;
        // String destivideopath= "D:\\uploadresources"+File.separator+videoNewFileName;
-        String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+videoNewFileName;
-        System.out.println(destivideopath);
+       //上传文件到服务器同一个jar包位置
+       File jarpath= new File(ResourceUtils.getURL("classpath:").getPath()).getParentFile().getParentFile().getParentFile();
+        System.out.println("xianjar:"+jarpath.getAbsolutePath());
+        System.out.println("xianjar2:"+jarpath);
+        File linuxpath= new File(jarpath.getAbsolutePath(),"src/main/resources/static/upload");
+        System.out.println("xianlunxipath:"+linuxpath.getAbsolutePath());
+        //String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+videoNewFileName;
+        File newvideofile= new File(linuxpath.getAbsolutePath(),videoNewFileName);
+        System.out.println(newvideofile.getAbsolutePath());
        // String destivideosavedbpath="UploadFiles\\videos"+File.separator+videoNewFileName;
         String destivideosavedbpath="upload"+File.separator+videoNewFileName;
         String imgfileName=imgfile.getOriginalFilename();
@@ -71,12 +79,14 @@ public class uploadVideoController {
         System.out.println(imgsuffixname);
         String imgNewFileName=time+imgsuffixname;//文件新名称
        // String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\images"+File.separator+imgNewFileName;
-        String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+imgNewFileName;
+        //String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+imgNewFileName;
+        File newimgfile=new File(linuxpath.getAbsolutePath(),imgNewFileName);
         // String destiimgpath="D:\\uploadresources"+File.separator+imgNewFileName;
         //String destiimgsavedbpath="UploadFiles\\images"+File.separator+imgNewFileName;
         String destiimgsavedbpath="upload"+File.separator+imgNewFileName;
-        File newvideofile=new File(destivideopath);
-        File newimgfile=new File(destiimgpath);
+        System.out.println("xian++++++xian");
+      //  File newvideofile=new File(destivideopath);
+      //  File newimgfile=new File(destiimgpath);
         if(!newvideofile.getParentFile().exists())
         {
             newvideofile.getParentFile().mkdirs();

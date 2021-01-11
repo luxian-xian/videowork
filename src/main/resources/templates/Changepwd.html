@@ -24,7 +24,11 @@
         }
     }
 </script >
-<body th:style="'background: url(' +'/img/image3.jpg'+ ');'">
+<!--<body th:style="'background: url(' +'/img/image3.jpg'+ ');'">-->
+<body >
+<div id="backgroundset" style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
+    <img style="position:fixed;left:0; top:0;" th:src="@{/img/image1.jpg}" height="100%" width="100%" />
+</div>
 <div style="width: 100%;height: 100%;text-align: center;margin-top: 60px">
     <form role="form" action="/Changepwd" method="post" name="chapwdform">
         <div style="text-align: center">

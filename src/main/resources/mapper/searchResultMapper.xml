@@ -2,12 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yanjiuyuan.videowork.dao.searchResultMapper">
     <select id="getsearchlist"  resultType="String">
-
-       SELECT img_path FROM videoinfos where videoname like CONCAT('%',#{videoname},'%')
-     UNION
-       SELECT video_path FROM videoinfos where videoname  like CONCAT('%',#{videoname},'%')
-       UNION
-       SELECT videoname FROM videoinfos where videoname  like CONCAT('%',#{videoname},'%');
+        SELECT img_path FROM videoinfos where videoname like CONCAT('%',#{videoname},'%')
+        UNION
+        SELECT video_path FROM videoinfos where videoname  like CONCAT('%',#{videoname},'%')
+        UNION
+        SELECT videoname FROM videoinfos where videoname  like CONCAT('%',#{videoname},'%');
     </select>
 
 </mapper>

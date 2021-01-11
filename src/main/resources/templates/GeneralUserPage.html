@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title>General User Page</title>
 </head>
-<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">
+<!--<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">-->
+<body >
+<div id="backgroundset" style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
+    <img style="position:fixed;left:0; top:0;" th:src="@{/img/image2.jpg}" height="100%" width="100%" />
+</div>
 <div style="color: chocolate;font-size: larger;display: inline-block" >
     <label th:text="${session.Username}+'欢迎您！'"></label>
     <a href="Changepwd" >
@@ -20,7 +24,7 @@
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 
-    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo"  maxlength="255" required></label>
+    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" placeholder="只支持以逗号，分号分隔的多关键字查询，最多为3个关键字" maxlength="255" required></label>
    <!-- <a href="SearchVideo">-->
     <input style="font-size:large;color: darkgreen;background: chocolate;height: 40px"  type="button" id="Search" name="Search" value="搜索" onclick="checksearchtext()">
     <!--</a>-->
@@ -100,7 +104,7 @@
         <td>
             <a id ="videopath1" target="_blank">
               <!--  <div id="imgpath">
-                 &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                 &lt ;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
                 </div>-->
             <img id="textimg1" width="400" height="300" >
             </a>
@@ -256,9 +260,9 @@ $(document).ready(function getpathlist(){
              /*   alert("状态码："+xhr.status);
                 alert("状态:"+xhr.readyState);*/
                 alert("错误信息:"+xhr.statusText );
-             /*   alert("返回响应信息："+xhr.responseText );
+                alert("返回响应信息："+xhr.responseText );
                 alert("请求状态："+textStatus);
-                alert(errorThrown);*/
+                alert(errorThrown);
 
             }
 
