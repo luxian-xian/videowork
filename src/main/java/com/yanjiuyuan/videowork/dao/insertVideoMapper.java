@@ -9,5 +9,5 @@ import java.util.Date;
 @Repository
 @Component
 public interface insertVideoMapper {
-    VideoBean insertVideoInfo(String videoname, String video_description, String uploadname, Date uploadtime, String img_path,String video_path);
+    VideoBean insertVideoInfo(String videoname, String video_description, String video_type,String uploadname, Date uploadtime, String img_path,String video_path);
 }

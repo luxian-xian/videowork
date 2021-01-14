@@ -35,12 +35,14 @@ public class uploadVideoController {
             throws ParseException, FileNotFoundException {
         String videoname=request.getParameter("videoName");
         String video_description=request.getParameter("videodesc");
+        String video_type=request.getParameter("videotype");
         String uploadname=request.getParameter("uploadName");
         SimpleDateFormat transfor=new SimpleDateFormat("yyyy-MM-dd");
         String uploadtimestring=request.getParameter("uploadTime");
         Date uploadtime=transfor.parse(uploadtimestring);
         System.out.println(videoname);
         System.out.println(video_description);
+        System.out.println(video_type);
         System.out.println(uploadname);
         System.out.println(uploadtimestring);
         System.out.println(uploadtime);
@@ -68,7 +70,7 @@ public class uploadVideoController {
         System.out.println("xianjar2:"+jarpath);
         File linuxpath= new File(jarpath.getAbsolutePath(),"src/main/resources/static/upload");
         System.out.println("xianlunxipath:"+linuxpath.getAbsolutePath());
-        //String destivideopath= "D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+videoNewFileName;
+        String destivideopath= "E:\\videowork_extension\\src\\main\\resources\\static\\upload"+File.separator+videoNewFileName;
         File newvideofile= new File(linuxpath.getAbsolutePath(),videoNewFileName);
         System.out.println(newvideofile.getAbsolutePath());
        // String destivideosavedbpath="UploadFiles\\videos"+File.separator+videoNewFileName;
@@ -79,27 +81,26 @@ public class uploadVideoController {
         System.out.println(imgsuffixname);
         String imgNewFileName=time+imgsuffixname;//文件新名称
        // String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\UploadFiles\\images"+File.separator+imgNewFileName;
-        //String destiimgpath="D:\\videowork\\src\\main\\resources\\static\\upload"+File.separator+imgNewFileName;
+        String destiimgpath="E:\\videowork_extension\\src\\main\\resources\\static\\upload"+File.separator+imgNewFileName;
         File newimgfile=new File(linuxpath.getAbsolutePath(),imgNewFileName);
         // String destiimgpath="D:\\uploadresources"+File.separator+imgNewFileName;
         //String destiimgsavedbpath="UploadFiles\\images"+File.separator+imgNewFileName;
         String destiimgsavedbpath="upload"+File.separator+imgNewFileName;
         System.out.println("xian++++++xian");
-      //  File newvideofile=new File(destivideopath);
-      //  File newimgfile=new File(destiimgpath);
-        if(!newvideofile.getParentFile().exists())
+       File newvideofilewinds=new File(destivideopath);
+        File newimgfilewinds=new File(destiimgpath);
+        if(!newvideofilewinds.getParentFile().exists())
         {
-            newvideofile.getParentFile().mkdirs();
+            newvideofilewinds.getParentFile().mkdirs();
         }
-        if(!newimgfile.getParentFile().exists())
+        if(!newimgfilewinds.getParentFile().exists())
         {
-            newimgfile.getParentFile().mkdirs();
+            newimgfilewinds.getParentFile().mkdirs();
         }
-
         try {
-            file.transferTo(newvideofile);
-            imgfile.transferTo(newimgfile);
-            insertvideoservice.insertVideoinfos(videoname,video_description,uploadname,uploadtime,destiimgsavedbpath,destivideosavedbpath);
+            file.transferTo(newvideofilewinds);
+            imgfile.transferTo(newimgfilewinds);
+            insertvideoservice.insertVideoinfos(videoname,video_description,video_type,uploadname,uploadtime,destiimgsavedbpath,destivideosavedbpath);
             session.setAttribute("uploadstatus","2");
         }catch (FileNotFoundException e)
         {

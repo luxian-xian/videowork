@@ -12,8 +12,8 @@ public class insertVideoServiceImpl implements insertVideoService{
     @Autowired
     private insertVideoMapper insertvideomapper;
     @Override
-    public VideoBean insertVideoinfos(String videoname, String video_description, String uploadname, Date uploadtime,String img_path,String video_path)
+    public VideoBean insertVideoinfos(String videoname, String video_description, String video_type,String uploadname, Date uploadtime,String img_path,String video_path)
     {
-        return insertvideomapper.insertVideoInfo(videoname,video_description,uploadname,uploadtime,img_path, video_path);
+        return insertvideomapper.insertVideoInfo(videoname,video_description,video_type,uploadname,uploadtime,img_path, video_path);
     }
 }
