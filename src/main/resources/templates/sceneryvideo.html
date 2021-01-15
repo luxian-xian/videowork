@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scenery Video Page</title>
+</head>
+<!--<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">-->
+<body >
+<div id="backgroundset" style="position:absolute; width:100%; height:100%; z-index:-1; left:0; top:0;">
+    <img style="position:fixed;left:0; top:0;" th:src="@{/img/image2.jpg}" height="100%" width="100%" />
+</div>
+<div style="color: #d2691e;font-size: larger;display: inline-block;float: right;top: 0" >
+
+    <label th:text="${session.Username}+'欢迎您！'"></label>
+    <a href="Changepwd" >
+        <button type="submit" style="color: darkgreen;background: chocolate"  >修改密码</button></a>
+    <!--  <a href="login">-->
+    <a class="button" style="color: darkgreen;background: chocolate;font-size: medium" th:href="@{/user/logout}"> 注销</a><!--</a>-->
+
+</div>
+<div>
+    <nav style="font-size: x-large;float: left;  ">
+        <a style="color: chocolate;font-family: 华光楷体_CNKI" href="GeneralUserPage"><b>首页</b></a>
+        <a style="color: chocolate;font-family: 华光楷体_CNKI" href="sceneryvideo"><b>风景视频</b></a>
+        <a style="color: chocolate;font-family: 华光楷体_CNKI" href="html5_noscript.asp"><b>学习视频</b></a>
+        <a style="color: chocolate;font-family: 华光楷体_CNKI" href="html5_noscript.asp"><b>搞笑视频</b></a>
+        <a style="color: chocolate;font-family: 华光楷体_CNKI" href="html5_noscript.asp"><b>其他</b></a>
+    </nav>
+</div>
+
+<!--<div id="msg" style="text-align: center;color: black;font-size: larger"></div>-->
+<!--<form role="form" action="/data" method="post" >-->
+
+
+<!--<div style="margin-top: 100px" ></div>-->
+<div style="display:inline-block;margin-top: 40px" >
+    <label><input style="width: 400px;height: 25px " type="text" id="SearchVideo" name="SearchVideo" placeholder="只支持以逗号，分号分隔的多关键字查询，最好不超过3个关键字" maxlength="255" required></label>
+    <!-- <a href="SearchVideo">-->
+    <input style="font-size:large;color: darkgreen;background: chocolate;height: 40px"  type="button" id="Search" name="Search" value="搜索" onclick="checksearchtext()">
+    <!--</a>-->
+    <script type="text/javascript">
+        function  checksearchtext(){
+            var videoname=document.getElementById("SearchVideo").value;
+            console.log(videoname);
+            if(videoname =="")
+            {
+                alert("搜索框内容不能为空！")
+                document.getElementById("SearchVideo").focus();
+            }
+            else
+            { /*window.location.href="SearchVideo"*/
+                window.open("SearchVideo");
+            }
+        }
+    </script>
+
+</div>
+
+<div style="margin-top: 60px"></div>
+<div style="text-align: center">
+    <span id="showpic" style="font-size: larger;text-align: center">图片加载中。。。。</span>
+</div>
+<div id="dispic">
+    <table id="tab" style="margin:0 auto">
+        <tr>
+            <td>
+                <a id ="videopath1" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt ;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg1" width="400" height="300" ></br>
+                    <input type="text" id="textname1" readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+            <td>
+                <a id ="videopath2" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg2" width="400" height="300">
+                    <input type="text" id="textname2" readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+            <td>
+                <a id ="videopath3" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg3" width="400" height="300" >
+                    <input type="text" id="textname3" readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a id ="videopath4" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg4" width="400" height="300">
+                    <input type="text" id="textname4" readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+            <td>
+                <a id ="videopath5" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg5" width="400" height="300" >
+                    <input type="text" id="textname5" readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+            <td>
+                <a id ="videopath6" target="_blank">
+                    <!--  <div id="imgpath">
+                       &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
+                      </div>-->
+                    <img id="textimg6" width="400" height="300" >
+                    <input type="text" id="textname6"  readonly="readonly" style="font-size: large;text-align: center;border: none;width: 400px;background-color: lightblue"> </input>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript"  th:src="@{'../js/jquery-3.3.1.min.js'}"></script>
+<script type="text/javascript">
+    $(document).ready(function getpathlist(){
+        $.ajax({
+                url: "http://localhost:8080/sceneryPath",
+                type: "get",
+                dataType: "json",
+                async: true,
+                beforeSend:function ()
+                {  $("#showpic").show();
+                    $("#dispic").hide();
+                },
+                success: function (data)
+                {
+                    var str="";
+                    console.log(data);
+                    var datalength=data.length;
+                    var midlegth=datalength/3;
+                    console.log(datalength);
+                    console.log(midlegth);
+                    if(datalength==0)
+                    {
+                        alert("还没有相关类型的视频！");
+                    }
+                    else
+                    {
+                        if(midlegth<7 ){
+                            for (var i = 0; i < midlegth; i++) {
+                                var a = data[i];
+                                var j = i + midlegth;
+                                var h=i+1;
+                                var b=data[j];
+                                console.log(a);
+                                console.log(b);
+                                var k=j+midlegth;
+                                var c=data[k];
+                                console.log(c);
+                                var result = a.replace(/\\/g, "/");
+                                var videoresult = b.replace(/\\/g, "/");
+                                var nameresult= c.replace(/\\/g, "/");
+                                console.log(result);
+                                var cc="../" + result;
+                                console.log(cc);
+                                var videolink="http://localhost:8080/"+videoresult;
+                                $("#textimg"+h).attr('src',cc);
+                                $("#videopath"+h).attr('href',videolink);
+                                $("#textname"+h).attr('value',c);
+                            }
+
+
+                        }
+                        else{
+                            var h=1;
+                            for(i=midlegth-1;i>midlegth-7;i--)
+                            {
+                                var a = data[i];
+                                var j = i + midlegth;
+                                var b=data[j];
+                                var k=j+midlegth;
+                                var c=data[k];
+                                console.log(c);
+                                var result = a.replace(/\\/g, "/");
+                                var videoresult = b.replace(/\\/g, "/");
+                                var nameresult= c.replace(/\\/g, "/");
+                                console.log(result);
+                                var cc="../" + result;
+                                console.log(cc);
+                                var videolink="http://localhost:8080/"+videoresult;
+                                $("#textimg"+h).attr('src',cc);
+                                $("#videopath"+h).attr('href',videolink);
+                                $("#textname"+h).attr('value',c);
+                                h=h+1;
+                                console.log(h);
+
+                            }
+                        }
+
+                    }
+                },
+                complete: function (){
+                    $("#showpic").hide();
+                    $("#dispic").show();
+                    $("#uploadstatus").attr('value',"7");
+                },
+                error: function (xhr, textStatus, errorThrown){
+                    alert("ajax连接异常：");
+                    /*   alert("状态码："+xhr.status);
+                       alert("状态:"+xhr.readyState);*/
+                    alert("错误信息:"+xhr.statusText );
+                    alert("返回响应信息："+xhr.responseText );
+                    alert("请求状态："+textStatus);
+                    alert(errorThrown);
+
+                }
+
+            }
+        );
+
+    });
+
+
+</script>
+
+
+</body>
+</html>
