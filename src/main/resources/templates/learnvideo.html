@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Scenery Video Page</title>
-   <style>
-       #colorcss a:link{
-           background-color:lightgrey;
-       }
-       #colorcss a:hover{
-           background-color: darkgreen;
-       }
-   </style>
+    <title>Learn Video Page</title>
+    <style>
+        #colorcss a:link{
+            background-color:lightgrey;
+        }
+        #colorcss a:hover{
+            background-color: darkgreen;
+        }
+    </style>
 </head>
 <!--<body th:style="'background: url(' +'/img/image2.jpg'+ ');'">-->
 <body >
@@ -26,17 +26,15 @@
     <a class="button" style="color: darkgreen;background: chocolate;font-size: medium" th:href="@{/user/logout}"> 注销</a><!--</a>-->
 
 </div>
-
 <div id="colorcss">
     <nav style="font-size: x-large;float: left; text-decoration: none ">
-        <a id="Firstpage"   style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="GeneralUserPage"><b>首页</b></a>
-        <a id="scenery"    style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="sceneryvideo"><b>风景视频</b></a>
-        <a id="learn"  style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="learnvideo"><b>学习视频</b></a>
-        <a id="funny"   style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="funnyvideo"><b>搞笑视频</b></a>
-        <a id="other"   style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="othervideo"><b>其他</b></a>
+        <a style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="GeneralUserPage"><b>首页</b></a>
+        <a style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="sceneryvideo"><b>风景视频</b></a>
+        <a style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="learnvideo"><b>学习视频</b></a>
+        <a style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="funnyvideo"><b>搞笑视频</b></a>
+        <a style="color: chocolate;text-decoration: none;font-family: 华光楷体_CNKI" href="othervideo"><b>其他</b></a>
     </nav>
 </div>
-
 
 <!--<div id="msg" style="text-align: center;color: black;font-size: larger"></div>-->
 <!--<form role="form" action="/data" method="post" >-->
@@ -137,7 +135,7 @@
 <script type="text/javascript">
     $(document).ready(function getpathlist(){
         $.ajax({
-                url: "http://localhost:8080/sceneryPath",
+                url: "http://localhost:8080/learnPath",
                 type: "get",
                 dataType: "json",
                 async: true,
