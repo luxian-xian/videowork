@@ -109,25 +109,45 @@
                     var datalength=data.length;
                     console.log("test++"+datalength);
                     var str="";
-                    for (var i = 0; i < datalength; i++)
-                    {
-                        var a=data[i].video_path;
-                        console.log(a);
-                        var mydate=data[i].uploadtime;
-                        if(mydate!=null ||mydate !="")
-                        {
-                          var  correctdate= new Date(parseInt(mydate.time));
-                            correctdate=correctdate.toLocaleDateString();
-                        }
-                        console.log(mydate);
-                        console.log(correctdate);
-                        var videoresult= a.replace(/\\/g, "/");
-                        str1="<tr><td>"+data[i].id+"</td><td>"+data[i].videoname+"</td><td>"+data[i].video_description+"</td><td>"+data[i].uploadname+"</td><td>"+correctdate+"</td>";
-                        str2="<td><a href=\""+"http://localhost:8080/"+videoresult+"\" target='_blank'>"+"<button>查看</button>"+"</a><button>修改</button><button>删除</button>"+"</td></tr>";
-                        str=str1+str2;
-                        console.log(str);
-                        $("#videoinfo").append(str);
+                    if(datalength<20) {
+                        for (var i = 0; i < datalength; i++) {
+                            var a = data[i].video_path;
+                            console.log(a);
+                            var mydate = data[i].uploadtime;
+                            if (mydate != null || mydate != "") {
+                                var correctdate = new Date(parseInt(mydate.time));
+                                correctdate = correctdate.toLocaleDateString();
+                            }
+                            console.log(mydate);
+                            console.log(correctdate);
+                            var videoresult = a.replace(/\\/g, "/");
+                            str1 = "<tr><td>" + data[i].id + "</td><td>" + data[i].videoname + "</td><td>" + data[i].video_description + "</td><td>" + data[i].uploadname + "</td><td>" + correctdate + "</td>";
+                            str2 = "<td><a href=\"" + "http://localhost:8080/" + videoresult + "\" target='_blank'>" + "<button>查看</button>" + "</a><button>修改</button><button>删除</button>" + "</td></tr>";
+                            str = str1 + str2;
+                            console.log(str);
+                            $("#videoinfo").append(str);
 
+                        }
+                    }
+                    else {
+                        for (var i = datalength-1; i >datalength-21; i--) {
+                            var a = data[i].video_path;
+                            console.log(a);
+                            var mydate = data[i].uploadtime;
+                            if (mydate != null || mydate != "") {
+                                var correctdate = new Date(parseInt(mydate.time));
+                                correctdate = correctdate.toLocaleDateString();
+                            }
+                            console.log(mydate);
+                            console.log(correctdate);
+                            var videoresult = a.replace(/\\/g, "/");
+                            str1 = "<tr><td>" + data[i].id + "</td><td>" + data[i].videoname + "</td><td>" + data[i].video_description + "</td><td>" + data[i].uploadname + "</td><td>" + correctdate + "</td>";
+                            str2 = "<td><a href=\"" + "http://localhost:8080/" + videoresult + "\" target='_blank'>" + "<button>查看</button>" + "</a><button>修改</button><button>删除</button>" + "</td></tr>";
+                            str = str1 + str2;
+                            console.log(str);
+                            $("#videoinfo").append(str);
+
+                        }
                     }
 
                 },

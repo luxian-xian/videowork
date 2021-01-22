@@ -121,29 +121,29 @@
 <span id="showpic" style="font-size: larger;text-align: center">图片加载中。。。。</span>
 </div>
 <div id="dispic">
-    <table id="tab" style="margin:0 auto">
+    <!--<table id="tab" style="margin:0 auto">
         <tr>
         <td>
             <a id ="videopath1" target="_blank">
-              <!--  <div id="imgpath">
+              &lt;!&ndash;  <div id="imgpath">
                  &lt ;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                </div>-->
+                </div>&ndash;&gt;
             <img id="textimg1" width="400" height="300" >
             </a>
         </td>
             <td>
                 <a id ="videopath2" target="_blank">
-                    <!--  <div id="imgpath">
+                    &lt;!&ndash;  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                      </div>-->
+                      </div>&ndash;&gt;
                     <img id="textimg2" width="400" height="300">
                 </a>
             </td>
             <td>
                 <a id ="videopath3" target="_blank">
-                    <!--  <div id="imgpath">
+                    &lt;!&ndash;  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                      </div>-->
+                      </div>&ndash;&gt;
                     <img id="textimg3" width="400" height="300" >
                 </a>
             </td>
@@ -151,29 +151,39 @@
         <tr>
             <td>
                 <a id ="videopath4" target="_blank">
-                    <!--  <div id="imgpath">
+                    &lt;!&ndash;  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                      </div>-->
+                      </div>&ndash;&gt;
                     <img id="textimg4" width="400" height="300">
                 </a>
             </td>
             <td>
                 <a id ="videopath5" target="_blank">
-                    <!--  <div id="imgpath">
+                    &lt;!&ndash;  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                      </div>-->
+                      </div>&ndash;&gt;
                     <img id="textimg5" width="400" height="300" >
                 </a>
             </td>
             <td>
                 <a id ="videopath6" target="_blank">
-                    <!--  <div id="imgpath">
+                    &lt;!&ndash;  <div id="imgpath">
                        &lt;!&ndash;   <img th:src="@{'../UploadFiles/images/1603163668686.JPG'}" width="600" height="400" style="border-style: solid">&ndash;&gt;
-                      </div>-->
+                      </div>&ndash;&gt;
                     <img id="textimg6" width="400" height="300" >
                 </a>
             </td>
         </tr>
+    </table>-->
+    <table id="tab" style="margin:0 auto">
+    <tr>
+        <td style="border:none">
+            <a id="videopath" target="_blank">
+      <img id="textimg" width="700" height="400" align="center" >
+            </a>
+        </td>
+    </tr>
+
     </table>
 </div>
 
@@ -184,7 +194,7 @@
         var start = new Date().getTime();
         while (new Date().getTime() < start + delay);
     }*/
-$(document).ready(function getpathlist(){
+/*$(document).ready(function getpathlist(){*/
         $.ajax({
             url: "http://localhost:8080/picPath",
             type: "get",
@@ -203,10 +213,35 @@ $(document).ready(function getpathlist(){
                console.log(datalength);
                 console.log(midlegth);
                 if(midlegth<7 ){
-                    for (var i = 0; i < midlegth; i++) {
+                    var i = 0;
+                    function dispic(){
                         var a = data[i];
                         var j = i + midlegth;
-                        var h=i+1;
+                        var b=data[j];
+                        console.log("xian111118888");
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#showpic").hide();
+                        $("#dispic").show();
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                        if(i<midlegth-1){
+                            i=i+1;
+                        }
+                        else
+                        {
+                            i=0;
+                        }
+
+                    }
+                    setInterval(dispic, 3000);
+                   /* for (var i = 0; i < midlegth; i++) {
+                        var a = data[i];
+                        var j = i + midlegth;
                         var b=data[j];
                         console.log(a);
                         console.log(b);
@@ -216,15 +251,41 @@ $(document).ready(function getpathlist(){
                         var c="../" + result;
                         console.log(c);
                         var videolink="http://localhost:8080/"+videoresult;
-                        $("#textimg"+h).attr('src',c);
-                        $("#videopath"+h).attr('href',videolink);
-                    }
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                     Thread.sleep(5000);
+                    }*/
 
 
                 }
                 else{
-                    var h=1;
-                    for(i=midlegth-1;i>midlegth-7;i--)
+                    var i=midlegth-1;
+                    function dispic(){
+                        var a = data[i];
+                        var j = i + midlegth;
+                        var b=data[j];
+                        console.log("xian111117777");
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#showpic").hide();
+                        $("#dispic").show();
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                        if(i>midlegth-6){
+                            i=i-1;
+                        }
+                        else
+                        {
+                            i=midlegth-1;
+                        }
+
+                    }
+                    setInterval(dispic, 3000);
+                    /*for(i=midlegth-1;i>midlegth-7;i--)
                     {
                         var a = data[i];
                         var j = i + midlegth;
@@ -235,12 +296,11 @@ $(document).ready(function getpathlist(){
                         var c="../" + result;
                         console.log(c);
                         var videolink="http://localhost:8080/"+videoresult;
-                        $("#textimg"+h).attr('src',c);
-                        $("#videopath"+h).attr('href',videolink);
-                        h=h+1;
-                        console.log(h);
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                        Thread.sleep(5000);
 
-                    }
+                    }*/
                 }
                   /* for (var i = 0; i < midlegth; i++) {
                        var a = data[i];
@@ -273,8 +333,70 @@ $(document).ready(function getpathlist(){
 
             },
             complete: function (){
-                $("#showpic").hide();
+               /* $("#showpic").hide();
+                $("#dispic").show();*/
+               /* $("#showpic").hide();
                 $("#dispic").show();
+                var str="";
+                console.log(data);
+                var datalength=data.length;
+                var midlegth=datalength/2;
+                console.log(datalength);
+                console.log(midlegth);
+                if(midlegth<7 ){
+                    var i = 0;
+                    function dispic(){
+                        var a = data[i];
+                        var j = i + midlegth;
+                        var b=data[j];
+                        console.log("xian111118888");
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                        if(i<midlegth-1){
+                            i=i+1;
+                        }
+                        else
+                        {
+                            i=0;
+                        }
+
+                    }
+                    setInterval(dispic, 3000);
+                }
+                else{
+                    var i=midlegth-1;
+                    function dispic(){
+                        var a = data[i];
+                        var j = i + midlegth;
+                        var b=data[j];
+                        console.log("xian111117777");
+                        var result = a.replace(/\\/g, "/");
+                        var videoresult = b.replace(/\\/g, "/");
+                        console.log(result);
+                        var c="../" + result;
+                        console.log(c);
+                        var videolink="http://localhost:8080/"+videoresult;
+                        $("#textimg").attr('src',c);
+                        $("#videopath").attr('href',videolink);
+                        if(i>midlegth-6){
+                            i=i-1;
+                            console.log("xiani "+i);
+                        }
+                        else
+                        {
+                            i=midlegth-1;
+                        }
+                    }
+                    console.log("xian666 "+i);
+                    setInterval(dispic, 3000);
+                }
+*/
                 $("#uploadstatus").attr('value',"7");
             },
             error: function (xhr, textStatus, errorThrown){
@@ -291,7 +413,7 @@ $(document).ready(function getpathlist(){
             }
         );
 
-    });
+    /*});*/
 
 
 </script>
